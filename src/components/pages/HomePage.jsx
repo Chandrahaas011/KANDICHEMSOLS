@@ -14,31 +14,31 @@ function HomePage() {
     {
       title: 'Named Reactions',
       description: 'Explore famous chemical reactions named after their discoverers.',
-      imageSrc: '/src/assets/images/placeholders/named-reactions.jpg',
+      imageSrc: '/src/assets/gifs/named-reactions.gif',
       link: '/named-reactions',
     },
     {
       title: 'Protection Groups',
       description: 'Learn about chemical groups used to protect specific functionalities.',
-      imageSrc: '/src/assets/images/placeholders/protection-groups.jpg',
+      imageSrc: '/src/assets/gifs/protection-reactions.gif',
       link: '/protection-groups',
     },
     {
       title: 'Purification Reactions',
       description: 'Techniques and methods for purifying chemical compounds.',
-      imageSrc: '/src/assets/images/placeholders/purification-reactions.jpg',
+      imageSrc: '/src/assets/gifs/purification-reactions.gif',
       link: '/purification-reactions',
     },
     {
       title: 'Common Reagents',
       description: 'Detailed information about frequently used chemical reagents.',
-      imageSrc: '/src/assets/images/placeholders/common-reagents.jpg',
+      imageSrc: '/src/assets/gifs/common-reagents.gif',
       link: '/common-reagents',
     },
     {
       title: 'Common Reactions',
       description: 'Essential reactions that form the foundation of organic chemistry.',
-      imageSrc: '/src/assets/images/placeholders/common-reactions.jpg',
+      imageSrc: '/src/assets/gifs/common-reactions.gif',
       link: '/common-reactions',
     },
   ];
@@ -48,33 +48,34 @@ function HomePage() {
       <Hero />
       
       <section id="categories" className="py-16">
-        <div className="container-custom">
-          <motion.h2 
-            className="text-3xl font-bold text-center mb-12"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            viewport={{ once: true }}
-          >
-            Explore Chemistry Categories
-          </motion.h2>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {categories.map((category, index) => (
-              <motion.div
-                key={category.title}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                viewport={{ once: true, margin: "-100px" }}
-              >
-                <CategoryCard {...category} />
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-      
+  <div className="container-custom">
+    <motion.h2 
+      className="text-3xl font-bold text-center mb-12"
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5 }}
+      viewport={{ once: true }}
+    >
+      Explore Chemistry Categories
+    </motion.h2>
+  </div>
+  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 px-4 sm:px-8 lg:px-20 max-w-7xl mx-auto">
+
+    {categories.map((category, index) => (
+      <motion.div
+        key={category.title}
+        className="w-full"
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: index * 0.1 }}
+        viewport={{ once: true, margin: "-100px" }}
+      >
+        <CategoryCard {...category} />
+      </motion.div>
+    ))}
+  </div>
+</section>
+
       <AboutSection />
     </div>
   );
