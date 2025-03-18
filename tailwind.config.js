@@ -2,25 +2,18 @@
 export default {
   content: [
     "./index.html",
+    "./src/**/*.{js,jsx,ts,tsx}",
   ],
   theme: {
     extend: {
       colors: {
-        primary: '#52bad5',
-        secondary: '#f3f4f6',
-        accent: '#1a202c',
+        primary: "#2563eb", // Blue
+        secondary: "#4b5563", // Gray
+        accent: "#1e293b", // Dark slate
       },
-      fontFamily: {
-        sans: ['Inter', 'sans-serif'],
-      },
-      animation: {
-        'float': 'float 3s ease-in-out infinite',
-      },
-      keyframes: {
-        float: {
-          '0%, 100%': { transform: 'translateY(0)' },
-          '50%': { transform: 'translateY(-10px)' },
-        },
+      container: {
+        center: true,
+        padding: "1rem",
       },
     },
   },
