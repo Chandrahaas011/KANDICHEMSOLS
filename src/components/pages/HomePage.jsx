@@ -59,8 +59,7 @@ function HomePage() {
       Explore Chemistry Categories
     </motion.h2>
   </div>
-  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 px-4 sm:px-8 lg:px-20 max-w-7xl mx-auto">
-
+  <div className="grid grid-cols-1 sm:grid-cols-3 gap-10 px-20">
     {categories.map((category, index) => (
       <motion.div
         key={category.title}

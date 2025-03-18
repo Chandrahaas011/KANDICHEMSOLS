@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 function CategoryCard({ title, description, imageSrc, link }) {
   return (
     <motion.div
-       className="card card-hover aspect-square w-full h-auto"
+    className="card card-hover aspect-square w-full h-auto"
 
       whileHover={{ y: -5 }}
       transition={{ type: 'spring', stiffness: 300 }}
