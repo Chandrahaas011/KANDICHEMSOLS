@@ -2,6 +2,9 @@ import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { FaPhoneAlt, FaHeart } from 'react-icons/fa';
 
+import Header from '../common/Header';
+import Footer from '../common/Footer';
+
 function DonatePage() {
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -18,6 +21,7 @@ function DonatePage() {
 
   return (
     <div className="pt-24 pb-16">
+      <Header/>
       <div className="container-custom">
         <motion.div
           className="max-w-3xl mx-auto"
@@ -112,6 +116,7 @@ function DonatePage() {
             </p>
           </div>
         </motion.div>
+        <Footer/>
       </div>
     </div>
   );

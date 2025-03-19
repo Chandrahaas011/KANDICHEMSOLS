@@ -5,7 +5,7 @@ import { OrbitControls, PerspectiveCamera, Environment, useGLTF } from '@react-t
 // Component to load and display the GLB model
 function MoleculeModel({ scale = 1, rotating }) {
   const ref = useRef();
-  const { scene } = useGLTF('/models/dna.glb'); // Update this path if your GLB file is elsewhere
+  const { scene } = useGLTF('/models/dna2.glb'); // Update this path if your GLB file is elsewhere
 
   // Rotate the model if rotating is enabled
   useFrame((state, delta) => {

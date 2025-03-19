@@ -3,11 +3,15 @@ import { motion } from 'framer-motion';
 import Hero from '../home/Hero';
 import CategoryCard from '../home/CategoryCard';
 import AboutSection from '../home/AboutSection';
+import NavBar from '../common/NavBar';
+import { Link } from 'react-router-dom';
+import Header from '../common/Header';
+import Footer from '../common/Footer';
 
 function HomePage() {
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, []);
+  }, [])
 
   // These would be replaced with actual images in a real implementation
   const categories = [
@@ -15,36 +19,37 @@ function HomePage() {
       title: 'Named Reactions',
       description: 'Explore famous chemical reactions named after their discoverers.',
       imageSrc: '/src/assets/gifs/named-reactions.gif',
-      link: '/named-reactions',
+      link: '/NamedReactionsPage',
     },
     {
       title: 'Protection Groups',
       description: 'Learn about chemical groups used to protect specific functionalities.',
       imageSrc: '/src/assets/gifs/protection-reactions.gif',
-      link: '/protection-groups',
+      link: '/ProtectionGroupsPage',
     },
     {
       title: 'Purification Reactions',
       description: 'Techniques and methods for purifying chemical compounds.',
       imageSrc: '/src/assets/gifs/purification-reactions.gif',
-      link: '/purification-reactions',
+      link: '/PurificationReactionsPage',
     },
     {
       title: 'Common Reagents',
       description: 'Detailed information about frequently used chemical reagents.',
       imageSrc: '/src/assets/gifs/common-reagents.gif',
-      link: '/common-reagents',
+      link: '/CommonReagentsPage',
     },
     {
       title: 'Common Reactions',
       description: 'Essential reactions that form the foundation of organic chemistry.',
       imageSrc: '/src/assets/gifs/common-reactions.gif',
-      link: '/common-reactions',
+      link: '/CommonReactionsPage',
     },
   ];
 
   return (
     <div>
+      <Header/>
       <Hero />
       
       <section id="categories" className="py-16">
@@ -69,13 +74,18 @@ function HomePage() {
         transition={{ duration: 0.5, delay: index * 0.1 }}
         viewport={{ once: true, margin: "-100px" }}
       >
+        <Link to={category.link}>
         <CategoryCard {...category} />
+        </Link>
       </motion.div>
     ))}
   </div>
+  
+  
 </section>
 
       <AboutSection />
+      <Footer/>
     </div>
   );
 }

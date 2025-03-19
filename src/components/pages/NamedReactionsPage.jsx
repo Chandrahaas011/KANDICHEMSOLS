@@ -1,6 +1,9 @@
 import { useEffect } from 'react';
 import { motion } from 'framer-motion';
 
+import Header from '../common/Header';
+import Footer from '../common/Footer';
+
 function NamedReactionsPage() {
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -8,6 +11,7 @@ function NamedReactionsPage() {
 
   return (
     <div className="pt-24 pb-16">
+      <Header/>
       <div className="container-custom">
         <motion.div
           className="max-w-4xl mx-auto"
@@ -51,6 +55,7 @@ function NamedReactionsPage() {
             ))}
           </div>
         </motion.div>
+        <Footer/>
       </div>
     </div>
   );

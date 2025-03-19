@@ -74,7 +74,7 @@ function Footer() {
               </motion.a>
             </div>
             
-            <Link to="/donate">
+            <Link to="/DonatePage">
               <motion.button
                 className="bg-white text-primary font-bold py-2 px-6 rounded-full flex items-center gap-2"
                 whileHover={{ scale: 1.05 }}
