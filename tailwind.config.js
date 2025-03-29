@@ -15,7 +15,25 @@ export default {
         center: true,
         padding: "1rem",
       },
+      scrollSnapType: {
+        'x-mandatory': 'x mandatory',
+      },
     },
   },
-  plugins: [],
+  plugins: [
+    // Add a plugin to hide scrollbar
+    function({ addUtilities }) {
+      addUtilities({
+        '.scrollbar-hide': {
+          /* Hide scrollbar for Chrome, Safari and Opera */
+          '&::-webkit-scrollbar': {
+            display: 'none'
+          },
+          /* Hide scrollbar for IE, Edge and Firefox */
+          '-ms-overflow-style': 'none',
+          'scrollbar-width': 'none'
+        }
+      })
+    }
+  ],
 }
