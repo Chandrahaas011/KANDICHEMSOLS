@@ -53,7 +53,7 @@ function NamedReactionsPage() {
   ];
 
   return (
-    <div className="pt-24 pb-16 bg-slate-50 dark:bg-black theme-transition min-h-screen">
+    <div className="pt-24 pb-16 bg-transparent theme-transition min-h-screen">
       <div className="container-custom">
         <motion.div
           className="max-w-5xl mx-auto"

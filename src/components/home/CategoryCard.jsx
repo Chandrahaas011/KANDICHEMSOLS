@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 // Define animation variants outside the component
 const cardVariants = {
@@ -34,16 +34,28 @@ const cardVariants = {
 // Added isReflection prop
 function CategoryCard({ title, description, imageSrc, isActive, isReflection }) {
   const [isHovered, setIsHovered] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+  
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   return (
     <motion.div
-      className="w-72 h-72 overflow-hidden rounded-2xl shadow-lg relative group"
+      className="w-full h-full overflow-hidden rounded-2xl shadow-lg relative group"
       style={{ transform: 'translateZ(0)' }}
       variants={cardVariants}
       animate={isActive && !isReflection ? "active" : "inactive"}
-      onHoverStart={() => !isReflection && setIsHovered(true)}
-      onHoverEnd={() => !isReflection && setIsHovered(false)}
-      whileHover={isReflection ? {} : { y: -8 }}
+      onHoverStart={() => !isReflection && !isMobile && setIsHovered(true)}
+      onHoverEnd={() => !isReflection && !isMobile && setIsHovered(false)}
+      whileHover={isReflection || isMobile ? {} : { y: -8 }}
     >
       {/* Subtle gradient overlay on hover */}
       <motion.div
@@ -66,9 +78,9 @@ function CategoryCard({ title, description, imageSrc, isActive, isReflection }) 
         
         {/* Text overlay - positioned inside the card over the image */}
         {!isReflection && (
-          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent dark:from-black/90 dark:via-black/40 dark:to-transparent flex flex-col justify-end p-6 z-20">
+          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent dark:from-black/90 dark:via-black/40 dark:to-transparent flex flex-col justify-end p-4 md:p-6 z-20">
             <motion.h3 
-              className="text-xl font-bold mb-2 text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]"
+              className="text-lg md:text-xl font-bold mb-1 md:mb-2 text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]"
               animate={{
                 y: isHovered ? -3 : 0,
               }}
@@ -77,7 +89,7 @@ function CategoryCard({ title, description, imageSrc, isActive, isReflection }) 
               {title}
             </motion.h3>
             <motion.p 
-              className="text-sm text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] leading-relaxed"
+              className="text-xs md:text-sm text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] leading-relaxed"
               animate={{
                 opacity: isActive || isHovered ? 1 : 0.95,
                 y: isHovered ? -3 : 0,
