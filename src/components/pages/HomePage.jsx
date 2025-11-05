@@ -1,10 +1,8 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Hero from '../home/Hero';
-import CategoryCard from '../home/CategoryCard'; // Ensure path is correct
-import AboutSection from '../home/AboutSection'; // Ensure path is correct
-import Header from '../common/Header';         // Ensure path is correct
-import Footer from '../common/Footer';         // Ensure path is correct
+import CategoryCard from '../home/CategoryCard';
+import AboutSection from '../home/AboutSection';
 import { Link } from 'react-router-dom';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 
@@ -50,20 +48,34 @@ function HomePage() {
 
   return (
     <div>
-      <Header />
       <Hero />
 
-      <section id="categories" className="py-16 relative overflow-hidden">
-        <div className="container-custom mx-auto px-4">
-          <motion.h2
-            className="text-3xl font-bold text-center mb-12"
+      <section id="categories" className="py-20 relative overflow-hidden bg-transparent dark:bg-transparent">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            className="text-center mb-16"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
             viewport={{ once: true }}
           >
-            Explore Chemistry Categories
-          </motion.h2>
+            <motion.h2
+              className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-gray-900 via-primary to-blue-600 dark:from-gray-100 dark:via-blue-400 dark:to-blue-500 bg-clip-text text-transparent"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              viewport={{ once: true }}
+            >
+              Explore Chemistry Categories
+            </motion.h2>
+            <motion.div 
+              className="w-24 h-1 bg-gradient-to-r from-primary to-blue-600 dark:from-blue-400 dark:to-blue-500 mx-auto rounded-full"
+              initial={{ width: 0 }}
+              whileInView={{ width: 96 }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+              viewport={{ once: true }}
+            />
+          </motion.div>
         </div>
 
         {/* --- Carousel Container --- */}
@@ -157,25 +169,46 @@ function HomePage() {
           </div>
 
           {/* Navigation Buttons */}
-          <button
+          <motion.button
             onClick={goToPrevious}
-            className="absolute left-4 sm:left-10 top-1/2 transform -translate-y-1/2 z-20 bg-black bg-opacity-30 text-white p-3 rounded-full hover:bg-opacity-50 transition-colors"
+            className="absolute left-4 sm:left-10 top-1/2 transform -translate-y-1/2 z-20 bg-white/90 dark:bg-gray-900/90 backdrop-blur-sm text-primary dark:text-blue-400 p-4 rounded-full hover:bg-primary dark:hover:bg-blue-600 hover:text-white dark:hover:text-white hover:scale-110 transition-all duration-300 shadow-xl border-2 border-transparent dark:border-gray-700"
             aria-label="Previous Category"
+            whileHover={{ scale: 1.1, x: -5 }}
+            whileTap={{ scale: 0.95 }}
           >
             <FaChevronLeft size={24} />
-          </button>
-          <button
+          </motion.button>
+          <motion.button
             onClick={goToNext}
-            className="absolute right-4 sm:right-10 top-1/2 transform -translate-y-1/2 z-20 bg-black bg-opacity-30 text-white p-3 rounded-full hover:bg-opacity-50 transition-colors"
+            className="absolute right-4 sm:right-10 top-1/2 transform -translate-y-1/2 z-20 bg-white/90 dark:bg-gray-900/90 backdrop-blur-sm text-primary dark:text-blue-400 p-4 rounded-full hover:bg-primary dark:hover:bg-blue-600 hover:text-white dark:hover:text-white hover:scale-110 transition-all duration-300 shadow-xl border-2 border-transparent dark:border-gray-700"
             aria-label="Next Category"
+            whileHover={{ scale: 1.1, x: 5 }}
+            whileTap={{ scale: 0.95 }}
           >
             <FaChevronRight size={24} />
-          </button>
+          </motion.button>
+          
+          {/* Progress Indicators */}
+          <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20 flex gap-3">
+            {categories.map((_, index) => (
+              <motion.button
+                key={index}
+                onClick={() => setCurrentIndex(index)}
+                className={`transition-all duration-300 rounded-full ${
+                  index === currentIndex 
+                    ? 'bg-primary w-12 h-3' 
+                    : 'bg-white/50 hover:bg-white/80 w-3 h-3'
+                }`}
+                whileHover={{ scale: 1.2 }}
+                whileTap={{ scale: 0.9 }}
+                aria-label={`Go to category ${index + 1}`}
+              />
+            ))}
+          </div>
         </div>
       </section>
 
       <AboutSection />
-      <Footer />
     </div>
   );
 }

@@ -1,6 +1,32 @@
-import { useRef, useState } from 'react';
-import { Canvas, useFrame } from '@react-three/fiber';
+import { useRef, useState, useEffect } from 'react';
+import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import { OrbitControls, PerspectiveCamera, Environment, useGLTF } from '@react-three/drei';
+import * as THREE from 'three';
+
+// Component to set scene background based on theme
+function SceneBackground() {
+  const { scene } = useThree();
+  
+  useEffect(() => {
+    const isDark = document.documentElement.classList.contains('dark');
+    scene.background = new THREE.Color(isDark ? '#000000' : '#ffffff');
+    
+    // Listen for theme changes
+    const observer = new MutationObserver(() => {
+      const isDarkNow = document.documentElement.classList.contains('dark');
+      scene.background = new THREE.Color(isDarkNow ? '#000000' : '#ffffff');
+    });
+    
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ['class']
+    });
+    
+    return () => observer.disconnect();
+  }, [scene]);
+  
+  return null;
+}
 
 // Component to load and display the GLB model
 function MoleculeModel({ scale = 1, rotating }) {
@@ -28,6 +54,7 @@ function MoleculeViewer({ height = '300px' }) {
   return (
     <div style={{ height, width: '100%' }} className="relative">
       <Canvas shadows>
+        <SceneBackground />
         <PerspectiveCamera makeDefault position={[0, 0, 5]} />
         <ambientLight intensity={0.5} />
         <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} castShadow />
