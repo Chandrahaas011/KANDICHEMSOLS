@@ -5,6 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "prebuild": "npm run copy-gifs",
+    "copy-gifs": "powershell -ExecutionPolicy Bypass -File scripts\\copy-gifs.ps1",
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview"

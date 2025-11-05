@@ -5,18 +5,21 @@ import CategoryCard from '../home/CategoryCard';
 import AboutSection from '../home/AboutSection';
 import { Link } from 'react-router-dom';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
+// Import GIFs so Vite bundles them for production (avoids /src/ absolute paths)
 
 function HomePage() {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
+  // Use files from the `public/gifs` folder so they are served from the site root in production.
+  // Ensure you copy GIFs to `public/gifs` (see scripts/copy-gifs.ps1)
   const categories = [
-      { title: 'Named Reactions', description: 'Explore famous chemical reactions...', imageSrc: '/src/assets/gifs/named-reactions.gif', link: '/NamedReactionsPage' },
-      { title: 'Protection Groups', description: 'Learn about chemical groups...', imageSrc: '/src/assets/gifs/protection-reactions.gif', link: '/ProtectionGroupsPage' },
-      { title: 'Purification Reactions', description: 'Techniques and methods...', imageSrc: '/src/assets/gifs/purification-reactions.gif', link: '/PurificationReactionsPage' },
-      { title: 'Common Reagents', description: 'Detailed information about reagents.', imageSrc: '/src/assets/gifs/common-reagents.gif', link: '/CommonReagentsPage' },
-      { title: 'Common Reactions', description: 'Essential organic reactions.', imageSrc: '/src/assets/gifs/common-reactions.gif', link: '/CommonReactionsPage' },
+      { title: 'Named Reactions', description: 'Explore famous chemical reactions...', imageSrc: '/gifs/named-reactions.gif', link: '/NamedReactionsPage' },
+      { title: 'Protection Groups', description: 'Learn about chemical groups...', imageSrc: '/gifs/protection-reactions.gif', link: '/ProtectionGroupsPage' },
+      { title: 'Purification Reactions', description: 'Techniques and methods...', imageSrc: '/gifs/purification-reactions.gif', link: '/PurificationReactionsPage' },
+      { title: 'Common Reagents', description: 'Detailed information about reagents.', imageSrc: '/gifs/common-reagents.gif', link: '/CommonReagentsPage' },
+      { title: 'Common Reactions', description: 'Essential organic reactions.', imageSrc: '/gifs/common-reactions.gif', link: '/CommonReactionsPage' },
     ];
 
   const [currentIndex, setCurrentIndex] = useState(0);
